@@ -1,0 +1,132 @@
+Transform: 'AWS::Serverless-2016-10-31'
+Description: leap-dashboard-api-yml
+
+Globals:
+  Function:
+    Timeout: 30
+  Api:
+    Cors:
+      AllowMethods: "'OPTIONS,GET,POST,PUT,DELETE'"
+      AllowHeaders: "'Content-Type,X-CSRF-TOKEN'"
+      AllowOrigin: "'*'"
+
+Resources:
+  getAllResumes:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.getAllResumes
+      FunctionName: getAllResumes
+      CodeUri: dist/
+      Runtime: nodejs16.x
+      Description: 'getAllResumes'
+      MemorySize: 128
+      Timeout: 30
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08f8c9acb55f58f47
+        SubnetIds:
+          - subnet-0c0ce001fd6f717a8
+          - subnet-05f5ae28a44139351
+          - subnet-0e96ee1089cb07050
+      Events:
+        getusersapi:
+          Type: Api
+          Properties:
+            Path: /resumes
+            Method: get
+
+  getResume:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.getResume
+      FunctionName: getResume
+      CodeUri: dist/
+      Runtime: nodejs16.x
+      Description: 'getResume'
+      MemorySize: 128
+      Timeout: 30
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08f8c9acb55f58f47
+        SubnetIds:
+          - subnet-0c0ce001fd6f717a8
+          - subnet-05f5ae28a44139351
+          - subnet-0e96ee1089cb07050
+      Events:
+        getusersapi:
+          Type: Api
+          Properties:
+            Path: /resume/{resume_id}
+            Method: get
+
+  postResume:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.postResume
+      FunctionName: postResume
+      CodeUri: dist/
+      Runtime: nodejs16.x
+      Description: 'postResume'
+      MemorySize: 128
+      Timeout: 30
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08f8c9acb55f58f47
+        SubnetIds:
+          - subnet-0c0ce001fd6f717a8
+          - subnet-05f5ae28a44139351
+          - subnet-0e96ee1089cb07050
+      Events:
+        getusersapi:
+          Type: Api
+          Properties:
+            Path: /resume
+            Method: post
+
+  putResume:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.putResume
+      FunctionName: putResume
+      CodeUri: dist/
+      Runtime: nodejs16.x
+      Description: 'putResume'
+      MemorySize: 128
+      Timeout: 30
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08f8c9acb55f58f47
+        SubnetIds:
+          - subnet-0c0ce001fd6f717a8
+          - subnet-05f5ae28a44139351
+          - subnet-0e96ee1089cb07050
+      Events:
+        getusersapi:
+          Type: Api
+          Properties:
+            Path: /resume/{resume_id}
+            Method: put
+
+  deleteResume:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.deleteResume
+      FunctionName: deleteResume
+      CodeUri: dist/
+      Runtime: nodejs16.x
+      Description: deleteResume
+      MemorySize: 128
+      Timeout: 30
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08f8c9acb55f58f47
+        SubnetIds:
+          - subnet-0c0ce001fd6f717a8
+          - subnet-05f5ae28a44139351
+          - subnet-0e96ee1089cb07050
+      Events:
+        getusersapi:
+          Type: Api
+          Properties:
+            Path: /resume/{resume_id}
+            Method: delete

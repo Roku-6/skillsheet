@@ -1,0 +1,56 @@
+
+$table->string('resume_id', 40)->primary();
+$table->string('title', 30);
+$table->string('job_summary', 1000)->nullable();;
+$table->string('skills', 1000)->nullable();;
+$table->string('about_myself', 1000)->nullable();;
+$table->timestamps();
+
+{
+  resume_id: "69a2a7e1-8bb9-4673-a59b-a3cc023cd45d",
+  title: "しょくむけいれきしょ５",
+  job_summary: "テスト",
+  skills: "テスト",
+  about_myself: "テスト"
+}
+
+create table resumes (
+  resume_id varchar(40) NOT NULL PRIMARY KEY,
+  title varchar(30) NULL,
+  job_summary varchar(1000) NULL,
+  skills varchar(1000) NULL,
+  about_myself varchar(1000) NULL,
+  created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+//主キー
+顧客コード varchar(5) PRIMARY KEY, 
+
+//列確認
+SHOW COLUMNS FROM resumes;
+
+//テーブル削除
+drop table resumes;
+
+//Insert文(タイムスタンプ:0000-00-00 00:00:00になってしまう。タイムスタンプ箇所入力しないとエラー吐かれる。)
+insert into resumes values ('69a2a7e1-8bb9-4673-a59b-a3cc023cd45d', '職務経歴書１', 'テスト', 'テスト', 'テスト', '', '');
+//Insert文（エラー出ないし、タイムスタンプ自動更新。）
+insert into resumes (resume_id, title, job_summary, skills, about_myself) values ('69a2a7e1-8bb9-4g73-a59b-a3cc023cd45d', '職務経歴書１', 'テスト', 'テスト', 'テスト');
+insert into resumes (resume_id, title, job_summary, skills, about_myself) values ('69a2a7e1-8bb9-4673-a59b-a3cc023cd45d', '職務経歴書２', 'テスト', 'テスト', 'テスト');
+insert into resumes (resume_id, title, job_summary, skills, about_myself) values ('69a2a7e1-6bb9-4673-a59b-a3cc023cd45d', '職務経歴書３', 'テスト', 'テスト', 'テスト');
+insert into resumes (resume_id, title, job_summary, skills, about_myself) values ('69a2a0e1-8bb9-4673-a59b-a3cc023cd45d', '職務経歴書４', 'テスト', 'テスト', 'テスト');
+insert into resumes (resume_id, title, job_summary, skills, about_myself) values ('6902a7e1-8bb9-4673-a59b-a3cc023cd45d', '職務経歴書５', 'テスト', 'テスト', 'テスト');
+
+//update文
+update resumes set title='職務経歴書２' where resume_id='69a2a7e1-8bb9-4673-a59b-a3cc023cd45d';
+//update文(resumeでは使用しないが、以下のようなこともできる。stock列 < 10 のpriceを50引く。)
+update product set price=price-50 where stock < 10;
+//また、WHERE(条件式)がなければ全更新される。これよりあとは必要な時に勉強。
+
+//delete文
+delete from resumes where title='職務経歴書１';
+delete from resumes where title='職務経歴書２';
+delete from resumes where title='職務経歴書３';
+delete from resumes where title='職務経歴書４';
+delete from resumes where title='職務経歴書５';

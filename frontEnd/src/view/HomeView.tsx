@@ -6,7 +6,7 @@ import { Card, CardContent, Grid } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import AppHeader from '../components/AppHeader';
-import KeyStonePage from '../components/MainPage';
+import MainPage from '../components/MainPage';
 import { Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
@@ -114,7 +114,7 @@ function HomeView() {
                     />
                   </Search>
                 </Grid>
-                <KeyStonePage />
+                <MainPage />
               </Grid>
             </CardContent>
           </Card>

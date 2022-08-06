@@ -1,12 +1,7 @@
 import React from 'react';
+import axios from "axios";
 import { useState, useEffect } from 'react';
 import ResumeCard from './ResumeCard';
-import axios from "axios";
-import Grid from '@mui/material/Grid';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import "react-native-get-random-values";
-import { v4 as uuid } from 'uuid';
 
 type Resume = {
     resume_id: string;
@@ -27,39 +22,19 @@ function MainPage() {
     })
   }, [])
 
-  const resumeModel = {
-    resume_id: uuid(),
-    title: "新規職務経歴書25",
-    update_date: "",
-    job_summary: "this is React. this is ReactProject.",
-    skills: "React test",
-    about_myself: "React introduction",
-  }
-
-  const createResume = () => {
-    axios.post<Resume>("https://yjsig8wqw9.execute-api.ap-northeast-1.amazonaws.com/Stage/resume", resumeModel).then((res) => {
-      console.log(res.data)
-    })
-  }
-
   return (
     <>
-      <Grid container spacing={8}>
-        {resumes.map(resume => (
-          <ResumeCard
-            key = {resume.resume_id}
-            resume_id = {resume.resume_id}
-            title = {resume.title}
-            updated_at = {resume.updated_at}
-            job_summary = {resume.job_summary}
-            skills = {resume.skills}
-            about_myself = {resume.about_myself}
-          />
-        ))}
-      </Grid>
-      <Fab color="primary" aria-label="add" style={{ position: "absolute", right: "5%", bottom: "10%"}} onClick={createResume}>
-        <AddIcon />
-      </Fab>
+      {resumes.map(resume => (
+        <ResumeCard
+          key = {resume.resume_id}
+          resume_id = {resume.resume_id}
+          title = {resume.title}
+          updated_at = {resume.updated_at}
+          job_summary = {resume.job_summary}
+          skills = {resume.skills}
+          about_myself = {resume.about_myself}
+        />
+      ))}
     </>
   );
 }

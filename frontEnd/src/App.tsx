@@ -9,8 +9,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeView />} />
-        <Route path="ProfileEdit" element={<ProfileEdit />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/ProfileEdit" element={<ProfileEdit />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
